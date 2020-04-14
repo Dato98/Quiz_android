@@ -24,8 +24,8 @@ import java.util.Map;
 public class MainActivity extends AppCompatActivity {
 
     private RadioGroup Q1,Q2,Q3,Q4,Q5;
-    private Button btn_Check,btn_Restart;
-    private TextView txt_lastresult;
+    private Button btnCheck,btnRestart;
+    private TextView txtLastResult;
     Map<RadioGroup,Integer> answers = new HashMap<>();
     List<RadioGroup> Questions = new ArrayList<>();
 
@@ -71,9 +71,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        btn_Check = findViewById(R.id.btn_Check);
-        btn_Restart = findViewById(R.id.btn_Restart);
-        txt_lastresult = findViewById(R.id.last_result);
+        btnCheck = findViewById(R.id.btnCheck);
+        btnRestart = findViewById(R.id.btnRestart);
+        txtLastResult = findViewById(R.id.last_result);
 
         Storage storage = new StorageSharedPreference();
         if(storage.get(this,"last_result") == null)
@@ -81,9 +81,9 @@ public class MainActivity extends AppCompatActivity {
 
         String lastres = storage.get(this,"last_result");
         if(lastres.equals("-1"))
-            txt_lastresult.setText(String.format("შედეგი არ არის"));
+            txtLastResult.setText(String.format("შედეგი არ არის"));
         else
-            txt_lastresult.setText(String.format(" %s/5",lastres));
+            txtLastResult.setText(String.format(" %s/5",lastres));
 
         fillList();
         fillMap();
@@ -125,7 +125,7 @@ public class MainActivity extends AppCompatActivity {
 
         Storage storage = new StorageSharedPreference();
         storage.save(this,"last_result", Integer.toString(correctanswers));
-        txt_lastresult.setText(String.format(" %d/5",correctanswers));
+        txtLastResult.setText(String.format(" %d/5",correctanswers));
         UnlockRadbtn();
     }
 
